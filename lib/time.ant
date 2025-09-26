@@ -1,3 +1,13 @@
+fn on = (t1, t0) => out {
+	out = and(
+		eq(T1, t1),
+		eq(T0, t0)
+	);
+}
+
+
+
+
 fn on = (t3, t2, t1, t0) => out {
 	out = and(
 		eq(T3, t3),

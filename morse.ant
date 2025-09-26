@@ -1,0 +1,76 @@
+use "lib/time";
+
+# set fps = 4;
+set height = 16;
+set start = mid_left;
+set colors = bin;
+
+
+## Fundamentals
+fn dit = active => (c, dx) {
+	c = and(active, on(0, 0));
+	dx = and(active, or(on(0, 1), on(1, 0)));
+}
+
+fn dah = active => c { c = and(active, -on(1, 1)); }
+
+fn mux_morse = (sym, active) => (c, dx) {
+	(dit_c, dit_dx) = dit(active);
+	dah_c = dah(active);
+	c = mux(sym, dit_c, dah_c);
+	dx = mux(sym, dit_dx, 0);
+}
+
+fn on_unit = (t3, t2) => out {
+	out = and(eq(T3, t3), eq(T2, t2));
+}
+
+fn space = dx => () { dx = and(active, -on(1, 1)); }
+
+
+## Util
+
+fn bin_morse = (s0) => out {
+	(c, dx) = mux_morse(s0, on_unit(0, 0));
+	dx = or(dx, -on_unit(0, 0));
+}
+
+fn bin_morse = (s0, s1) => (c, dx) {
+	(c0, dx0) = mux_morse(s0, on_unit(0, 0));
+	(c1, dx1) = mux_morse(s1, on_unit(0, 1));
+
+	c = or(c0, c1);
+	dx = or(dx0, dx1);
+
+	dx = or(
+		dx,
+		on_unit(1, 0),
+		on_unit(1, 1)
+	);
+}
+
+
+# idea: spawn separate ants instead
+fn on_char = (t7, t6, t5, t4) => out {
+	out = and(
+		eq(T7, t7),
+		eq(T6, t6),
+		eq(T5, t5),
+		eq(T4, t4)
+	);
+}
+
+
+# Letters
+fn morse_a = () => (c, dx) {
+	(c, dx) = bin_morse(0, 1);
+}
+
+fn morse_e = () => (c, dx) { (c, dx) = dit(on_unit(0, 0)); }
+
+
+# Ant
+# idea: automatically make every other char a space
+ant main {
+	(C, DX) = morse_a();
+}

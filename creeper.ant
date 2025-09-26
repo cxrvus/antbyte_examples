@@ -1,7 +1,8 @@
 set size = 8;
 set start = top_left;
 set border = wrap;
-set fps = 32;
+set tpf = 64;
+set fps = 24;
 
 fn in_col = (t2, t1, t0) => out {
 	out = and(
@@ -69,6 +70,4 @@ ant main {
 	C0 = red;
 	C1 = -or(red, black);
 	C3 = or(red, and(-black, R0));
-
-	AX = T6;
 }
