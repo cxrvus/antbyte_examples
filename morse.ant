@@ -1,76 +1,94 @@
 use "lib/time";
 
-# set fps = 4;
-set height = 16;
+set fps = 16;
+set border = wrap;
+set height = 8;
+set width = 64;
 set start = mid_left;
 set colors = bin;
 
-
-## Fundamentals
-fn dit = active => (c, dx) {
-	c = and(active, on(0, 0));
-	dx = and(active, or(on(0, 1), on(1, 0)));
+ant main {
+	# spawn block on step 1 and cursor on step 3, then die
+	A1 = or(on(0, 1), on(1, 1));
+	(A0, AX) = cpy(on(1, 1));
 }
 
-fn dah = active => c { c = and(active, -on(1, 1)); }
+ant block = 2 { DX = 1; }
 
-fn mux_morse = (sym, active) => (c, dx) {
-	(dit_c, dit_dx) = dit(active);
-	dah_c = dah(active);
-	c = mux(sym, dit_c, dah_c);
-	dx = mux(sym, dit_dx, 0);
-}
-
-fn on_unit = (t3, t2) => out {
-	out = and(eq(T3, t3), eq(T2, t2));
-}
-
-fn space = dx => () { dx = and(active, -on(1, 1)); }
-
-
-## Util
-
-fn bin_morse = (s0) => out {
-	(c, dx) = mux_morse(s0, on_unit(0, 0));
-	dx = or(dx, -on_unit(0, 0));
-}
-
-fn bin_morse = (s0, s1) => (c, dx) {
-	(c0, dx0) = mux_morse(s0, on_unit(0, 0));
-	(c1, dx1) = mux_morse(s1, on_unit(0, 1));
-
-	c = or(c0, c1);
-	dx = or(dx0, dx1);
-
-	dx = or(
-		dx,
-		on_unit(1, 0),
-		on_unit(1, 1)
-	);
-}
-
-
-# idea: spawn separate ants instead
-fn on_char = (t7, t6, t5, t4) => out {
+fn on_unit = (t6, t5, t4, t3, t2) => out {
 	out = and(
-		eq(T7, t7),
 		eq(T6, t6),
 		eq(T5, t5),
-		eq(T4, t4)
+		eq(T4, t4),
+		eq(T3, t3),
+		eq(T2, t2),
+
+		and(-T1, T0)
 	);
 }
 
+ant cursor = 3 {
+	A2 = or(
+		on_unit(0, 0, 0, 0, 0),
+		on_unit(0, 0, 1, 0, 0),
+		on_unit(0, 1, 0, 0, 1),
+		on_unit(0, 1, 0, 1, 0),
+		on_unit(0, 1, 0, 1, 1),
+		on_unit(0, 1, 1, 1, 0),
+		on_unit(1, 0, 1, 0, 0),
+		0
+	);
 
-# Letters
-fn morse_a = () => (c, dx) {
-	(c, dx) = bin_morse(0, 1);
+	A3 = or(
+		on_unit(0, 0, 0, 0, 1),
+		on_unit(0, 0, 0, 1, 1),
+		on_unit(0, 0, 1, 1, 0),
+		on_unit(0, 1, 0, 0, 0),
+		on_unit(0, 1, 1, 0, 1),
+		on_unit(0, 1, 1, 1, 1),
+		on_unit(1, 0, 0, 0, 0),
+		on_unit(1, 0, 0, 1, 0),
+		0
+	);
+
+	A4 = or(
+		on_unit(0, 0, 0, 1, 0),
+		on_unit(0, 0, 1, 0, 1),
+		on_unit(0, 0, 1, 1, 1),
+		on_unit(0, 1, 1, 0, 0),
+		on_unit(1, 0, 0, 0, 1),
+		on_unit(1, 0, 0, 1, 1),
+		on_unit(1, 0, 1, 0, 1),
+		0
+	);
+
+	AX = on_unit(1, 0, 1, 0, 1);
 }
 
-fn morse_e = () => (c, dx) { (c, dx) = dit(on_unit(0, 0)); }
+fn symbol = () => () {
+	AK = and(-M3, CX); # kill target (if first target)
+	D2 = or(-M2, AK); # flip on first tick and after killing target
+	M2 = 1;
+	M3 = or(M3, AK);
+	AX = T6;
+}
 
+ant dit = 4 {
+	() = symbol();
+	C = AK;
+	DX = M0;
+	M0 = or(M0, AK);
+}
 
-# Ant
-# idea: automatically make every other char a space
-ant main {
-	(C, DX) = morse_a();
+ant dah = 8 { 
+	() = symbol();
+	(idle, M1, M0) = add(M1, M0, 0, and(M3, -M4));
+	M4 = or(M4, idle);
+	C = and(M3, -M4);
+	DX = M4;
+}
+
+ant space = 16 {
+	() = dit();
+	C = 0;
 }
