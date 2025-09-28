@@ -1,6 +1,6 @@
 set size = 128;
 set start = top_left;
-set tpf = 128;
+set speed = 128;
 set fps = 32;
 set border = wrap;
 set colors = bin;

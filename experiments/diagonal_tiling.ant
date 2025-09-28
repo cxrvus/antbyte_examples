@@ -1,5 +1,5 @@
 set size = 16;
-set tpf = 256;
+set speed = 256;
 set fps = 12;
 
 ant main {

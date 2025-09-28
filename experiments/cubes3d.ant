@@ -1,9 +1,9 @@
 set size = 96;
-set tpf = 128;
+set speed = 128;
 set fps = 24;
 set border = wrap;
 
-# set tpf = 00;
+# set speed = 00;
 # set ticks = 23424;
 
 ant main {

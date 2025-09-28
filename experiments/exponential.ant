@@ -1,6 +1,6 @@
 set size = 128;
 set border = obs;
-set tpf = 16;
+set speed = 16;
 set fps = 8;
 
 

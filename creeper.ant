@@ -1,7 +1,7 @@
 set size = 8;
 set start = top_left;
 set border = wrap;
-set tpf = 64;
+set speed = 64;
 set fps = 24;
 
 fn in_col = (t2, t1, t0) => out {

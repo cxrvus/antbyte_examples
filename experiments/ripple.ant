@@ -1,4 +1,4 @@
-set tpf = 256;
+set speed = 256;
 
 ant main {
 	DX = and(T3, T2, T1, T0);

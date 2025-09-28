@@ -1,5 +1,5 @@
 set start = top_left;
-set tpf = 00;
+set speed = 00;
 
 ant main {
 	DX = and(R2, R1, R0);

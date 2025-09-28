@@ -2,7 +2,7 @@ set size = 64;
 set start = mid_left;
 set border = wrap;
 set colors = bin;
-set tpf = 32;
+set speed = 32;
 
 fn dir_change = (mem, clock) => (mem_out, dir) {
 	dir = xor(mem, clock);

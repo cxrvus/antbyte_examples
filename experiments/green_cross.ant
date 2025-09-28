@@ -1,7 +1,7 @@
 use "../langton";
 
 set size = 96;
-set tpf = 64;
+set speed = 64;
 set start = top_left;
 
 ant main {

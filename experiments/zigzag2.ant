@@ -1,6 +1,6 @@
 set width = 256;
 set height = 128;
-set tpf = 4;
+set speed = 4;
 set fps = 32;
 set start = top_left;
 set border = cycle;

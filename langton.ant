@@ -2,7 +2,7 @@ set desc = "Langton's Ant";
 set size = 64;
 set border = die;
 set colors = bin;
-set tpf = 64;
+set speed = 64;
 
 fn main = in_color => out_color {
 	left = in_color;
