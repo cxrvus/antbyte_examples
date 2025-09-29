@@ -1,4 +1,5 @@
-set speed = 256;
+set size = 44;
+set speed = 4400;
 
 ant main {
 	DX = and(T3, T2, T1, T0);

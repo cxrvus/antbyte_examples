@@ -1,5 +1,6 @@
 set size = 4;
 set start = top_left;
+set fps = 4;
 
 ant main {
 	C0 = -and(-T2, -T1, -T0);
