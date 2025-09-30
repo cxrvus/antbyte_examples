@@ -1,0 +1,52 @@
+use "lib/time";
+
+set height = 31;
+set width = 69;
+set border = obs;
+set start = top_left;
+set fps = 24;
+set speed = 4;
+
+fn bounce_ant = () => () {
+	flip = and(M7, CX, M6);
+	left = and(M7, CX);
+
+	D2 = or(flip, left);
+	D1 = and(-flip, left);
+	D0 = -M7;
+	DX = CX;
+
+	M7 = 1;
+	M6 = CX;
+}
+
+ant main {
+	init = on(0, 0, 0, 1);
+	A1 = init;
+	M0 = or(M0, init);
+	DX = M0;
+	(A2, AX) = cpy(and(T4, on(0, 0, 0, 0)));
+}
+
+ant color = 2 {
+	() = bounce_ant();
+
+	change0 = or(CX, -or(M2, M1, M0));
+	change1 = and(change0, R0);
+	change2 = and(change0, R1);
+
+	(cout, M0) = add(M0, change0);
+	(cout, M1) = add(M1, change1, cout);
+	(_, M2) = add(M2, change2, cout);
+
+	(C2, C1, C0) = buf(M2, M1, M0);
+	C3 = 1;
+}
+
+ant darken = 4 {
+	() = bounce_ant();
+
+	(C2, C1, C0) = buf(C2, C1, C0);
+	C3 = 0;
+	CC = 1;
+}
