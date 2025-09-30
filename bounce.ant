@@ -5,7 +5,14 @@ set width = 69;
 set border = obs;
 set start = top_left;
 set fps = 24;
-set speed = 4;
+set speed = 8;
+set ticks = 1500;
+set loop = 1;
+set sleep = 100;
+
+# set speed = 0;
+# set height = 65;
+# set width = 187;
 
 fn bounce_ant = () => () {
 	flip = and(M7, CX, M6);
