@@ -1,0 +1,33 @@
+use "../lib/time";
+
+set colors = bin;
+set start = top_left;
+set height = 7;	
+set width = 9;	
+
+ant main {
+	C1 = 1;
+	AX = on(1, 0, 0, 0, 1, 1);
+
+	turn45 = or(
+		on(0, 0, 0, 0, 1, 0),
+		on(0, 1, 0, 1, 0, 1)
+	);
+
+	turn90 = or(
+		on(0, 0, 1, 0, 1, 0),
+		on(0, 0, 1, 1, 0, 0),
+		on(0, 1, 0, 0, 1, 0),
+		on(0, 1, 1, 0, 1, 1),
+		on(0, 1, 1, 1, 0, 1)
+	);
+
+	turn295 = or(
+		on(0, 0, 0, 1, 1, 0),
+		on(0, 1, 1, 0, 0, 0)
+	);
+
+	D0 = or(turn45, turn295);
+	D1 = turn90;
+	D2 = turn295;
+}
