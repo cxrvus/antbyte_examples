@@ -5,13 +5,12 @@ set colors = bin;
 set speed = 64;
 
 fn main = in_color => out_color {
-	left = in_color;
-	right = -in_color;
-
 	CC = 1;
-	out_color = -in_color;
 
-	D1 = or(left, right);
+	out_color = -in_color;
+	left = in_color;
+
+	D1 = 1;
 	D2 = left;
 }
 
