@@ -1,4 +1,5 @@
-/// <reference path="../js/lib.d.ts" />
+// @ts-check
+/** @typedef {import("../js/lib").World} World */
 
 import { ant } from "../js/lib.mjs"
 
