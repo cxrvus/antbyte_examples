@@ -1,5 +1,4 @@
 // @ts-check
-/** @typedef {import("../js/lib").World} World */
 
 import { ant, run } from "../js/lib.mjs"
 
