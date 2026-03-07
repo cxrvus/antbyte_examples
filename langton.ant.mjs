@@ -5,15 +5,13 @@ import { ant, run } from "../js/lib.mjs"
 
 run({
 	cfg: {
+		description: "Langton's Ant",
 		width: 64,
 		height: 64,
 		speed: 64,
-		looping: false,
 		border_mode: "despawn",
 		starting_pos: "center",
 		color_mode: "binary",
-		hide_title: false,
-		description: "Langton's Ant",
 	},
 	ants: {
 		1: ant("main", (C2) => ({
