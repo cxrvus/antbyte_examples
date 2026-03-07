@@ -1,10 +1,9 @@
 // @ts-check
 /** @typedef {import("../js/lib").World} World */
 
-import { ant } from "../js/lib.mjs"
+import { ant, run } from "../js/lib.mjs"
 
-/** @type {World} */
-const world = {
+run({
 	cfg: {
 		width: 64,
 		height: 64,
@@ -24,6 +23,4 @@ const world = {
 			D2: C2,
 		})),
 	},
-}
-
-console.log(JSON.stringify(world, null, '\t'))
+})
