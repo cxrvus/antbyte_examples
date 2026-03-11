@@ -1,0 +1,14 @@
+set size = 90;
+set start = top_left;
+set colors = bin;
+
+ant main {
+	A1 = 1;
+	D0 = T0;
+}
+
+ant dummy = 2 {
+	CC = 1;
+	C0 = T6;
+	AX = T7;
+}
