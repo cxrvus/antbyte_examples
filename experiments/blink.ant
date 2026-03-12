@@ -14,7 +14,7 @@ ant queen = 3 {
 	C0 = and(M1, -CN0);
 
 	M1 = M0;
-	M0 = CX;
+	M0 = AC;
 }
 
 ant clone = 2 {

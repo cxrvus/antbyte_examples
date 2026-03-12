@@ -15,16 +15,16 @@ set sleep = 100;
 # set width = 187;
 
 fn bounce_ant = () => () {
-	flip = and(M7, CX, M6);
-	left = and(M7, CX);
+	flip = and(M7, AC, M6);
+	left = and(M7, AC);
 
 	D2 = or(flip, left);
 	D1 = and(-flip, left);
 	D0 = -M7;
-	DX = CX;
+	DX = AC;
 
 	M7 = 1;
-	M6 = CX;
+	M6 = AC;
 }
 
 ant main {
@@ -38,7 +38,7 @@ ant main {
 ant color = 2 {
 	() = bounce_ant();
 
-	change0 = or(CX, -or(M2, M1, M0));
+	change0 = or(AC, -or(M2, M1, M0));
 	change1 = and(change0, R0);
 	change2 = and(change0, R1);
 
