@@ -1,19 +1,18 @@
-use "../langton";
+use "../langton2";
 
-set desc = "Langton's Ant, but self-replicating";
+set desc = "Langton's Ant, but self-replicating (+other variation)";
 
 set size = 128;
-set border = die;
 set colors = bin;
-
+set speed = 8;
 
 ant main {
-	() = langton();
+	() = langton2();
 
 	A1 = -or(T2, T1, T0);
 }
 
 ant clone = 2 {
-	() = langton();
+	() = langton2();
 	AX = AC;
 }

@@ -2,6 +2,7 @@ set size = 16;
 set start = top_left;
 set colors = bin;
 set border = die;
+set speed = 4;
 
 ant main {
 	C1 = 1;
