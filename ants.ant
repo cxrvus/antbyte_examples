@@ -1,6 +1,6 @@
 use "lib/time";
 
-set start = mid_left;
+set start = left;
 set size = 16;
 set fps = 4;
 
