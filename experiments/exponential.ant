@@ -3,7 +3,6 @@ set border = obs;
 set speed = 16;
 set fps = 8;
 
-
 ant main {
 	A0 = 1;
 
