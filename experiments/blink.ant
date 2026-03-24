@@ -6,7 +6,7 @@ ant main {
 	(A1, A0, AX) = cpy(T1);
 }
 
-ant queen = 3 {
+ant spawner = 3 {
 	A1 = -M1;
 	DX = -T0;
 
