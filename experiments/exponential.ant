@@ -1,7 +1,8 @@
+set decay = 128;
 set size = 128;
 set border = obs;
 set speed = 16;
-set fps = 8;
+set fps = 16;
 
 ant main {
 	A0 = 1;
